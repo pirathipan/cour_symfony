@@ -1,0 +1,38 @@
+<?php
+
+namespace AwesomeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * message
+ *
+ * @ORM\Table(name="message")
+ * @ORM\Entity(repositoryClass="AwesomeBundle\Repository\messageRepository")
+ */
+class message
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text")
+     */
+    private $content;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ticket", inversedBy="message")
+     * @ORM\JoinColumn(name="ticket", referencedColumnName="id", nullable=false)
+     */
+    private $ticket;
+
+
+}

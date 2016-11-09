@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: 3306
+    database_name: symfony-cours
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user: root@localhost
+    mailer_password: null
+    secret: 74afe5457671ac9afbce9756fb4fd498bef3e160

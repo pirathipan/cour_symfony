@@ -1,0 +1,63 @@
+{% extends 'AwesomeBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>ticket</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ticket.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ ticket.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ ticket.content }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                 <td>{% if ticket.date %}{{ ticket.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ticket_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    <tbody>
+    {% for message in messages %}
+        <tr>
+            <td>{{ message.content }} <br> </td>
+
+        </tr>
+    {% endfor %}
+    </tbody>
+
+
+    <h1>message creation</h1>
+
+    {{ form_start(form, {'action': path('message_new'), 'method': 'POST'}) }}
+    <input type="hidden" name="ticket" value="{{ ticket.id }}">
+    {{ form_widget(form) }}
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('message_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
